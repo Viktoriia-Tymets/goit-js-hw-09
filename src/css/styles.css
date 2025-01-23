@@ -10,7 +10,7 @@
 @import url('./container.css');
 @import url('./animations.css');
 @import url('./gallery.css');
-
+@import url('./form.css');
 
 /* Sections style */
 @import url('./header.css');
@@ -18,6 +18,7 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
 
 @import "simplelightbox/dist/simple-lightbox.min.css";
 
