@@ -1,51 +1,51 @@
-const feedbackFormEl = document.querySelector('.feedback-form');
-let formData = {
+const formData = {
     email: '',
     message: '',
 }
+const feedbackFormEl = document.querySelector('.feedback-form');
 
-const fillFormFields = () => {
-    try {
-if (localStorage.length === 0) {
-    return;
-}
+const formDataFromLS = 'feedback-form-state';
+feedbackFormEl.addEventListener('input', (event) => {
+    formData[event.target.name] = event.target.value.trim();
+    localStorage.setItem(feedbackFormEl, JSON.stringify(formData));
+});
 
-const formDataFromLS = JSON.parse(localStorage.getItem('feedback-form-state'));
-formData = formDataFromLS;
+window.addEventListener('load', () => {
+    const savedData = localStorage.getItem(feedbackFormEl);
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
 
-for (const key in formDataFromLS) {
-  feedbackFormEl.elements[key].value = formDataFromLS[key];
-}
-
-    } catch (err){
-        console.log(err);
+        Object.keys(parsedData).forEach((key) => {
+            form.elements[key].value = parsedData[key];
+            formData[key] = parsedData[key];
+        });
     }
+});
+
+feedbackFormEl.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!formData.email || !formData.message) {
+        alert('Fill please all fields');
+        return;
+    }
+console.log(formData);
+
+localStorage.removeItem(feedbackFormEl);
+formData.email = "";
+formData.message = "";
+feedbackFormEl.reset();
+})
 
 
-};
-
-fillFormFields();
 
 
-const onFormFieldChange = event => {
-const { target: formFieldEl } = event;
 
-const fieldValue = formFieldEl.value;
-const fieldName = formFieldEl.name;
 
-formData[fieldName] = fieldValue;
 
-localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-}
 
-const onFeedbackFormSubmit = event => {
-event.preventDefault();
 
-const {currentTarget: formEl} = event;
 
-formEl.reset();
-localStorage.removeItem('feedback-form-state');
-}
 
-feedbackFormEl.addEventListener('change', onFormFieldChange);
-feedbackFormEl.addEventListener('submit', onFeedbackFormSubmit);
+
+
