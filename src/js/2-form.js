@@ -25,6 +25,9 @@ function completeForm() {
         formData.message = parsedData.message || "";
         feedbackFormEl.elements.email.value = formData.email;
         feedbackFormEl.elements.message.value = formData.message;
+    } else {
+        feedbackFormEl.elements.email.value = "";
+        feedbackFormEl.elements.message.value = "";
     }
 };
 
