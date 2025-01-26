@@ -43,7 +43,7 @@ console.log(formData);
 
 formData.email = "";
 formData.message = "";
-localStorage.removeItem(formDataFromLS);
+
 feedbackFormEl.reset();
 
 };
