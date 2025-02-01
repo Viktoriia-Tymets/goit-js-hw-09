@@ -19,17 +19,15 @@ function completeForm() {
     const savedData = localStorage.getItem(formDataFromLS);
 
     if (savedData) {
-        const parsedData = JSON.parse(savedData);
+       try { 
+        formData = JSON.parse(savedData);
         
         formData.email = parsedData.email || "";
         formData.message = parsedData.message || "";
-        feedbackFormEl.elements.email.value = formData.email;
-        feedbackFormEl.elements.message.value = formData.message;
-    } else {
-        feedbackFormEl.elements.email.value = "";
-        feedbackFormEl.elements.message.value = "";
+    } catch (error) {
+       console.error(error)
     }
-};
+}};
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -43,7 +41,6 @@ console.log(formData);
 
 formData.email = "";
 formData.message = "";
-
 feedbackFormEl.reset();
 
 };
