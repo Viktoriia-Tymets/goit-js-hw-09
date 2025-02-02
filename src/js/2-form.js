@@ -17,17 +17,18 @@ function handleInput(event) {
 
 function completeForm() {
     const savedData = localStorage.getItem(formDataFromLS);
+    if (!savedData) return;
 
-    if (savedData) {
        try { 
-        formData = JSON.parse(savedData);
+
+        const parsedData = JSON.parse(savedData);
         
         formData.email = parsedData.email || "";
         formData.message = parsedData.message || "";
     } catch (error) {
        console.error(error)
     }
-}};
+};
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -42,10 +43,9 @@ console.log(formData);
 formData.email = "";
 formData.message = "";
 feedbackFormEl.reset();
-
 };
 
-
+completeForm();
 
 
 
