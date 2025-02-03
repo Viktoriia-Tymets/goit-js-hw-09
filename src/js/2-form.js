@@ -1,11 +1,12 @@
+const formDataFromLS = 'feedback-form-state';
+const feedbackFormEl = document.querySelector('.feedback-form');
+
+
 const formData = {
     email: '',
     message: '',
 };
 
-const formDataFromLS = 'feedback-form-state';
-
-const feedbackFormEl = document.querySelector('.feedback-form');
 
 feedbackFormEl.addEventListener('input', handleInput);
 feedbackFormEl.addEventListener('submit', handleSubmit);
@@ -25,6 +26,13 @@ function completeForm() {
         
         formData.email = parsedData.email || "";
         formData.message = parsedData.message || "";
+
+        if (feedbackFormEl.elements.email) {
+feedbackFormEl.elements.email.value = formData.email;
+        }
+        if (feedbackFormEl.elements.message) {
+            feedbackFormEl.elements.message.value = formData.message;
+        }
     } catch (error) {
        console.error(error)
     }
@@ -42,6 +50,7 @@ console.log(formData);
 
 formData.email = "";
 formData.message = "";
+localStorage.removeItem(formDataFromLS);
 feedbackFormEl.reset();
 };
 
