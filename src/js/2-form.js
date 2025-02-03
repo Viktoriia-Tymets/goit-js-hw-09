@@ -12,8 +12,12 @@ feedbackFormEl.addEventListener('input', handleInput);
 feedbackFormEl.addEventListener('submit', handleSubmit);
 
 function handleInput(event) {
+    console.log('Input changed:', event.target.name, event.target.value);
+
     formData[event.target.name] = event.target.value.trim();
     localStorage.setItem(formDataFromLS, JSON.stringify(formData));
+
+    console.log('Saved to localStorage:', localStorage.getItem(formDataFromLS));
 };
 
 function completeForm() {
@@ -50,15 +54,10 @@ console.log(formData);
 
 formData.email = "";
 formData.message = "";
-localStorage.removeItem(formDataFromLS);
 feedbackFormEl.reset();
 };
 
 completeForm();
-
-
-
-
 
 
 
